@@ -1,4 +1,4 @@
-package com.example.mnlgu.challenge1.adapters;
+package com.example.mnlgu.challenge1;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

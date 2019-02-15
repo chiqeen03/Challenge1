@@ -14,18 +14,23 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.mnlgu.challenge1.adapters.Adapter;
+import com.example.mnlgu.challenge1.model.Escuela;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private final String JSON_URL = "https://api.myjson.com/bins/17alm6" ; //aca se pone el link del json
+
     private JsonObjectRequest request;
     private RequestQueue requestQueue;
+    private List<Escuela> escuelas;
     private RecyclerView recyclerView;
 
     @Override
@@ -33,7 +38,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        escuelas = new ArrayList<>();
+
         recyclerView = findViewById(R.id.recycleView);
+        jsonRequest();
     }
 
     private void jsonRequest(){
@@ -43,19 +51,22 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try{
 
-                    JSONArray cardsJSON = response.getJSONArray("cards");
+                    JSONArray cardsJSON = response.getJSONArray("escuelas");
                     JSONObject jsonObject = null;
 
                     for(int i = 0; i < cardsJSON.length(); i++){
                         jsonObject = cardsJSON.getJSONObject(i);
 
-                        //PokeCard pokeCard = new PokeCard();
-                        //pokeCard.setId(jsonObject.getString("id"));
-                        //pokeCard.setName(jsonObject.getString("name"));
-                        //pokeCard.setImageURL(jsonObject.getString("imageUrl"));
-                        //pokeCard.setArtist(jsonObject.getString("artist"));
+                        Escuela escuela = new Escuela();
+                        escuela.setNombre(jsonObject.getString("nombre"));
+                        escuela.setCampus(jsonObject.getString("campus"));
+                        escuela.setTelefono(jsonObject.getString("telefono"));
+                        //escuela.setNombre(jsonObject.getString("direccion.calle"));
+                        escuela.setCorreoElectronico(jsonObject.getString("correo electronico"));
+                        escuela.setSitioWeb(jsonObject.getString("sitio web"));
+                        escuela.setImagenURL(jsonObject.getString("imagen"));
 
-                        //cards.add(pokeCard);
+                        escuelas.add(escuela);
                     }
 
                 }
@@ -63,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     jsonException.printStackTrace();
                 }
 
-                //setRecyclerView(cards);
+                setRecyclerView(escuelas);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -76,11 +87,11 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
-    /*
-    private void setRecyclerView(List<PokeCard> pokeCards){
-        PokeRecycleAdapter pokeRecycleAdapter = new PokeRecycleAdapter(this, pokeCards);
+
+    private void setRecyclerView(List<Escuela> escuelas){
+        Adapter RecycleAdapter = new Adapter(this, escuelas);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(pokeRecycleAdapter);
+        recyclerView.setAdapter(RecycleAdapter);
     }
-    */
+
 }

@@ -2,10 +2,8 @@ package com.example.mnlgu.challenge1.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.tv.TvInputService;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.mnlgu.challenge1.CardActivity;
 import com.example.mnlgu.challenge1.R;
 import com.example.mnlgu.challenge1.model.Escuela;
 
@@ -56,12 +56,18 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecordHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull Adapter.RecordHolder recordHolder, int i) {
-        
+        recordHolder.nombre.setText(escuelaList.get(i).getNombre());
+        recordHolder.campus.setText(escuelaList.get(i).getCampus());
+        recordHolder.sitioWeb.setText(escuelaList.get(i).getSitioWeb());
+        recordHolder.correoElectronico.setText(escuelaList.get(i).getCorreoElectronico());
+        recordHolder.telefono.setText(escuelaList.get(i).getTelefono());
+
+        Glide.with(context).load(escuelaList.get(i).getImagenURL()).apply(options).into(recordHolder.image);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return escuelaList.size();
     }
 
     public static class RecordHolder extends RecyclerView.ViewHolder{
@@ -71,15 +77,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecordHolder> {
 
         public RecordHolder(@NonNull View itemView) {
             super(itemView);
-            /*
+
             nombre = itemView.findViewById(R.id.nombre_card);
             campus = itemView.findViewById(R.id.campus_card);
             telefono = itemView.findViewById(R.id.telefono_card);
-            direccion = itemView.findViewById(R.id.direccion_card);
+            //direccion = itemView.findViewById(R.id.direccion_card);
             correoElectronico = itemView.findViewById(R.id.email_card);
             sitioWeb = itemView.findViewById(R.id.sitioWeb_card);
             image = itemView.findViewById(R.id.image_card);
-            */
+
         }
     }
 }
