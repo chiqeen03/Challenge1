@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Challenge1</string>
+    <string name="splash_screen">Splash Screen</string>
+    <string name="splash">Splash</string>
 </resources>
