@@ -23,7 +23,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final String JSON_URL = "" ; //aca se pone el link del json
+    private final String JSON_URL = "https://api.myjson.com/bins/17alm6" ; //aca se pone el link del json
     private JsonObjectRequest request;
     private RequestQueue requestQueue;
     private RecyclerView recyclerView;
@@ -73,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Error del Server", Toast.LENGTH_SHORT).show();
             }
         });
+
+        requestQueue = Volley.newRequestQueue(MainActivity.this);
+        requestQueue.add(request);
     }
 
     /*
