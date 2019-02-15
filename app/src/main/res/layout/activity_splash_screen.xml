@@ -8,13 +8,12 @@
     tools:context=".SplashScreenActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <pl.droidsonroids.gif.GifImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        app:srcCompat="@drawable/logo"
-        android:contentDescription="TODO" />
+        android:layout_height="match_parent"
+        android:src="@drawable/loading"
+        />
+
 </RelativeLayout>
 
     <!--android:background="@drawable/logo-edited-md"-->

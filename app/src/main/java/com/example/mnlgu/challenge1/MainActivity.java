@@ -55,13 +55,12 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonObject = null;
 
                     for(int i = 0; i < cardsJSON.length(); i++){
-                        jsonObject = cardsJSON.getJSONObject(i);
 
+                        jsonObject = cardsJSON.getJSONObject(i);
                         Escuela escuela = new Escuela();
                         escuela.setNombre(jsonObject.getString("nombre"));
                         escuela.setCampus(jsonObject.getString("campus"));
                         escuela.setTelefono(jsonObject.getString("telefono"));
-                        //escuela.setNombre(jsonObject.getString("direccion.calle"));
                         escuela.setCorreoElectronico(jsonObject.getString("correo electronico"));
                         escuela.setSitioWeb(jsonObject.getString("sitio web"));
                         escuela.setImagenURL(jsonObject.getString("imagen"));

@@ -44,18 +44,18 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecordHolder> {
             @Override
             public void onClick(View view) {
                 Escuela escuela = escuelaList.get(recordHolder.getAdapterPosition());
-                Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
                 Intent it = new Intent(context, CardActivity.class);
                 it.putExtra("escuela", escuela);
                 context.startActivity(it);
             }
         });
 
-        return null;
+        return recordHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull Adapter.RecordHolder recordHolder, int i) {
+        String a = "";
         recordHolder.nombre.setText(escuelaList.get(i).getNombre());
         recordHolder.campus.setText(escuelaList.get(i).getCampus());
         recordHolder.sitioWeb.setText(escuelaList.get(i).getSitioWeb());
@@ -85,6 +85,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecordHolder> {
             correoElectronico = itemView.findViewById(R.id.email_card);
             sitioWeb = itemView.findViewById(R.id.sitioWeb_card);
             image = itemView.findViewById(R.id.image_card);
+
+            String s = "";
+            int a = 1;
 
         }
     }
