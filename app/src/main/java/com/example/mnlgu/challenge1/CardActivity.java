@@ -3,6 +3,7 @@ package com.example.mnlgu.challenge1;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,5 +45,14 @@ public class CardActivity extends AppCompatActivity {
         email.setText(escuela.getCorreoElectronico());
         sitioweb.setText(escuela.getSitioWeb());
         Glide.with(this).load(escuela.getImagenURL()).into(imageView);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it = new Intent(CardActivity.this, ViewImageActivity.class);
+                it.putExtra("imagen", escuela.getImagenURL());
+                startActivity(it);
+            }
+        });
     }
 }
